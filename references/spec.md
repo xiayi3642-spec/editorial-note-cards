@@ -22,6 +22,20 @@
 | `--cream` | `#FAF6E8` | 奶油卡底（偏白不偏黄） |
 | `--edge` | `#4a7c3a` | 卡片深绿细边 |
 | 白 | `#fff` / `rgba(255,255,255,.9)` | 封面文字、外层白框 |
+| `--highlight` | `#FFF200` | 正文重点短语的荧光笔底色（独立语义色，不参与一套一色的风格换色） |
+
+## 重点荧光笔（正文语义强调）
+- 仅在**非装饰性文案**里标出真正的重点关键词/短句，例如结论、核心判断、定义中的关键成分；使用 `<span class="hl">重点文字</span>`。
+- 不用于 `.t1/.t2/.bot/.kicker/.sub/.foot/.src` 等页眉、页码、导航、英文副题、来源和装饰性文字；不高亮整段，每页通常 `1–3` 处。
+- 默认色值：`--highlight:#FFF200`。色块在文字后层，从文字框约 `78%` 的 y 位置开始，高度 `0.3em`（约字高 `30%`），左右各外扩 `0.04em`；允许轻微手写感，但不得遮住字形主体。
+- 推荐实现（已写入内容页模板）：
+  ```css
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:78%;height:.3em;background:var(--highlight);opacity:.9;border-radius:.04em;transform:rotate(-.35deg);}
+  ```
+- `.hl` 只包裹短语，避免跨行；必须跨行时拆成多个 `.hl`，分别贴合每一行。
+- 语义优先级：`.hl` 表示「本页最值得记住的结论/关键词」；普通加粗仍用 `<b>`，不要把所有粗体都自动升级为荧光笔。
+- 渲染后目检：黄色应从字形下沿透出，而不是成为整行底色；若短语换行、遮挡下一行或与卡脚相碰，先缩短高亮短语，不通过降低字号或裁剪来掩盖。
 
 ## 色板反推（参考图驱动）
 用户给了参考图时**从参考图反推色板替换默认风格**；无参考图用风格库默认 `green-editorial`。结构项（卡片位置、间距、字体栈、去斜体、外层框结构）**一律不变**。
@@ -92,6 +106,7 @@
 - `.feat/.f` 特征网格：`grid repeat(4,1fr) gap:14`，`.f` 圆角8 细边框，`.t` 17px/500，`.d` 12.5px 灰
 - `.cls/.cl` 分类网格：`grid 1fr 1fr gap:14`，`.cl` padding 16 18，`.abbr` mono 绿，`.t` 18px/500，`.d` 13px 灰
 - `.quote` pull-quote：`border-left:3px solid var(--green);background:rgba(115,174,82,.08);padding:18px 24px;`，内文 16px 不斜体
+- `.hl` 重点荧光笔：正文短语级强调，固定荧光黄 `#FFF200`，y 下移、色块高约字高 30%；与普通 `<b>` 的层级分开
 
 ### 卡脚
 `.foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(74,124,58,.3);padding-top:13px;display:flex;justify-content:space-between;mono 10px 灰}`（左 `Chapter 02`，右主题英文）

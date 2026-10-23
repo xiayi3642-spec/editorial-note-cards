@@ -27,7 +27,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    - `assets/templates/cover-template.html`（默认：渐变底+外层框+居中白字，配任意风格色板）
    - `assets/templates/cover-spring.html`（黄绿垫图+白色流线+Didot/回文明朝体，配 `media/bg-spring.jpg`；素材在 `assets/media/`、`assets/fonts/`）
    复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张 `media/bg-spring.jpg`（整套背景统一）。**
-3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。
+3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
 4. **渲染 PNG**（高清单卡）：
    ```bash
    node scripts/html2png.mjs card-01-cover.html card-02-x.html ... --width 1080 --height 1440 --scale 1
@@ -38,7 +38,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    node scripts/html2pdf.mjs card-01-cover.html card-02-x.html ... --out notes-ch02.pdf --width 1080 --height 1440
    ```
    依赖 `pdf-lib`；输出每页 810×1080pt（1080×1440 CSS px 等比，无缩放）。
-6. **自查**：Read PNG/PDF 预览，核对外层元信息正确、卡内无文字溢出/重叠、`.foot` 吸底、无斜体。
+6. **自查**：Read PNG/PDF 预览，核对外层元信息正确、卡内无文字溢出/重叠、`.foot` 吸底、无斜体；同时检查 `.hl` 只落在正文重点短语、没有跨行、黄色色块位于文字后层且未遮住字形主体。
 7. **交付**：PNG 用 RichMediaCard 整组交付（本地绝对路径）；PDF 用 present_files 交付；HTML 仅作源文件不单独交付。用户要求时两种都给。
 
 ## 硬规则
@@ -46,6 +46,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 - 内容页：卡片 `top:190px / bottom:136px` 已定稿勿改；卡内顶部三处间距（h1 34 / sub 24 / body 16）定稿勿改。
 - 全局 `font-style:normal`。
 - **一套一色**：整套笔记卡全程只用**一个**配色风格，不中途切换（风格由参考图反推 / 点名 / 随机决定后，全套不变）。
+- **重点荧光笔**：仅用于非装饰性正文里的重点关键词/短句；默认荧光黄 `#FFF200`，色块位于文字后层、向下偏移，高度约为字高 `30%`。页眉、页码、kicker、英文副题、脚注、纯装饰字不加；禁止整段高亮或把它当普通配色使用。
 - **渲染后必须审计**：交付前用 `node scripts/html2png.mjs <cards...> --check` 审计；带溢出/裁剪/单行槽换行的卡必须修复后再交付，**禁用 `overflow:hidden` 掩盖故障**（会隐藏文字而非修复）。
 - **结构固定、色板可变**：色板默认绿色，用户给参考图时按反推结果替换（背景/文字/强调/辅助色 + 深浅规则）；字体栈、卡片位置、间距、外层框结构见 `references/spec.md`。
 
