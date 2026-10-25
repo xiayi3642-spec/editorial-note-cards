@@ -27,15 +27,17 @@
 ## 重点荧光笔（正文语义强调）
 - 仅在**非装饰性文案**里标出真正的重点关键词/短句，例如结论、核心判断、定义中的关键成分；使用 `<span class="hl">重点文字</span>`。
 - 不用于 `.t1/.t2/.bot/.kicker/.sub/.foot/.src` 等页眉、页码、导航、英文副题、来源和装饰性文字；不高亮整段，每页通常 `1–3` 处。
-- 默认色值：`--highlight:#FFF200`。色块在文字后层，从文字框约 `30% + 3px` 的 y 位置开始，高度 `0.70em`（约字高 `70%`），左右各外扩 `0.04em`；允许轻微手写感，但不得遮住字形主体。
+- **荧光笔颜色选取规则**（除非用户明确指定色值）：从本风格配色中，取 **7:2:1 原则中"7"（主色/大面底色）的对比色/互补色**，饱和度要高——因为透明度只有 40%，低饱和色会透不出来。例如绿色主题选暖琥珀金 `#E9B445`，粉色主题选青绿对比色，深蓝主题选暖橙黄。自动选色时保证与奶油卡底 `#FAF6E8` 有足够对比即可。
+- 全局默认参数：高度 `0.70em`（字高 70%），位置 `top:calc(30% + 3px)`，透明度 `opacity:.4`，左右各外扩 `0.04em`；允许轻微手写感，但不得遮住字形主体。
 - 推荐实现（已写入内容页模板）：
   ```css
+  :root{--highlight: /* 按上述规则自动选色 */;}
   .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
-  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.9;border-radius:.04em;transform:rotate(-.35deg);}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
   ```
 - `.hl` 只包裹短语，避免跨行；必须跨行时拆成多个 `.hl`，分别贴合每一行。
 - 语义优先级：`.hl` 表示「本页最值得记住的结论/关键词」；普通加粗仍用 `<b>`，不要把所有粗体都自动升级为荧光笔。
-- 渲染后目检：黄色应从字形下沿透出，而不是成为整行底色；若短语换行、遮挡下一行或与卡脚相碰，先缩短高亮短语，不通过降低字号或裁剪来掩盖。
+- 渲染后目检：色块应从字形下沿透出而不成为整行底色；若短语换行、遮挡下一行或与卡脚相碰，先缩短高亮短语，不通过降低字号或裁剪来掩盖。
 
 ## 色板反推（参考图驱动）
 用户给了参考图时**从参考图反推色板替换默认风格**；无参考图用风格库默认 `green-editorial`。结构项（卡片位置、间距、字体栈、去斜体、外层框结构）**一律不变**。
