@@ -62,3 +62,13 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`
 - 渲染：`scripts/html2png.mjs`、`scripts/html2pdf.mjs`
+
+## 推送更新到 GitHub（仓库 editorial-note-cards）
+本 skill 目录已是 git 仓库，`origin` 指向公开仓库 `https://github.com/xiayi3642-spec/editorial-note-cards`。需要"推送/更新/上传/发布这套卡片"时，按此流程（换会话照做即可推送）：
+
+1. 查状态：`git -C <本目录> status -sb`（看未提交/未推送改动）；`git -C <本目录> log origin/main..HEAD --oneline`（看待推送提交）
+2. 提交：`git -C <本目录> add -A && git -C <本目录> commit -m "说明"`
+3. 推送：`git -C <本目录> push origin main`（**凭证自动从本机 `~/.git-credentials` 读取，无需手动认证**）
+4. 确认：`git -C <本目录> fetch origin -q && git -C <本目录> status -sb` 应显示 `up to date`；可 curl `https://raw.githubusercontent.com/xiayi3642-spec/editorial-note-cards/main/<文件>` 抽查公开可访问
+
+**安全规则（不可违反）**：GitHub 凭证存本机 `~/.git-credentials`（权限 600），**严禁把 token / 密码 / 凭证写入本 skill 的仓库、assets、references、scripts 或任何被 git 跟踪的文件**——仓库是公开的，写入即泄露。换会话后在同一环境执行上述流程即可（共享该本机凭证），无需也不得重新索要 token。
