@@ -50,22 +50,37 @@ if (!files.length || !out) {
   console.error('用法: node html2pdf.mjs <a.html> [<b.html> ...] --out 输出.pdf [--width W] [--height H]'); process.exit(2);
 }
 
+// CSS px → PDF pt（96dpi: 1pt = 1.333px）
+const ptW = width * 0.75;
+const ptH = height * 0.75;
+// 文件名包含 cover 的页走截图位图路径（避免 text-shadow 在 iPad PDF 阅读器里显示成矩形块）
+const isCover = f => /cover/i.test(basename(f));
+
 const browser = await chromium.launch({ executablePath: findChromium() || undefined });
 try {
-  const page = await browser.newPage({ viewport: { width, height } });
+  const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 2 });
   const merged = await PDFDocument.create();
   for (const f of files) {
     const src = resolve(f);
     await page.goto('file://' + src, { waitUntil: 'networkidle' });
-    const bytes = await page.pdf({
-      width, height,
-      printBackground: true,
-      preferCSSPageSize: false,
-      margin: { top: 0, right: 0, bottom: 0, left: 0 },
-    });
-    const srcDoc = await PDFDocument.load(bytes);
-    const copied = await merged.copyPages(srcDoc, srcDoc.getPageIndices());
-    for (const p of copied) merged.addPage(p);
+    if (isCover(f)) {
+      // 封面：整页截图成高清位图，嵌进 PDF（杜绝矢量 PDF 里 text-shadow 被阅读器误显示为矩形块）
+      const png = await page.screenshot({ type: 'png' });
+      const img = await merged.embedPng(png);
+      const p = merged.addPage([ptW, ptH]);
+      p.drawImage(img, { x: 0, y: 0, width: ptW, height: ptH });
+    } else {
+      // 内容页：继续走矢量 PDF 打印
+      const bytes = await page.pdf({
+        width, height,
+        printBackground: true,
+        preferCSSPageSize: false,
+        margin: { top: 0, right: 0, bottom: 0, left: 0 },
+      });
+      const srcDoc = await PDFDocument.load(bytes);
+      const copied = await merged.copyPages(srcDoc, srcDoc.getPageIndices());
+      for (const p of copied) merged.addPage(p);
+    }
   }
   await mkdir(dirname(resolve(out)), { recursive: true });
   const finalBytes = await merged.save();

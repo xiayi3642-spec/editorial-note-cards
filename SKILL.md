@@ -26,7 +26,8 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 2. **写封面** `card-01-cover.html`：从**封面模板库**选版式：
    - `assets/templates/cover-template.html`（默认：渐变底+外层框+居中白字，配任意风格色板）
    - `assets/templates/cover-spring.html`（黄绿垫图+白色流线+Didot/回文明朝体，配 `media/bg-spring.jpg`；素材在 `assets/media/`、`assets/fonts/`）
-   复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张 `media/bg-spring.jpg`（整套背景统一）。**
+   - `assets/templates/cover-painting.html`（油画垫图+深墨绿回文明朝体大标题，配 `media/bg-painting.jpg`；风格 `painting-cream-green`，深墨绿字、无流线、**禁用 text-shadow**）
+   复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张垫图（整套背景统一）。**
 3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
 4. **渲染 PNG**（高清单卡）：
    ```bash
@@ -53,15 +54,15 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 ## 风格库（styles）
 - 位置：`assets/styles/*.md`，每个文件定义一种完整风格（色板、背景渐变、文字明暗、氛围）
 - **默认随机**：用户不给参考图、也没点名风格时，从风格库**随机抽一个**使用（不再固定默认）；`green-editorial` 仍是库中一员
-- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）
+- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）
 - **新增风格**：把用户确认/沉淀的风格写成 `assets/styles/<风格名>.md`，沿用同格式（名称、默认否、氛围、色板、字体、结构引用），即成为可切换选项
 
 ## 维护
-- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`content-template.html`（定稿示例）
-- 封面素材：`assets/media/bg-spring.jpg`（黄绿垫图）、`assets/media/ribbon.svg`（白色流线）；字体 `assets/fonts/`（Didot + 回文明朝体）
+- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`content-template.html`（定稿示例）
+- 封面素材：`assets/media/bg-spring.jpg`（黄绿垫图）、`bg-painting.jpg`（印象派油画垫图）、`ribbon.svg`（白色流线）；字体 `assets/fonts/`（Didot + 回文明朝体）
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`
-- 渲染：`scripts/html2png.mjs`、`scripts/html2pdf.mjs`
+- 渲染：`scripts/html2png.mjs`、`scripts/html2pdf.mjs`（封面文件名含 cover 自动走整页 2x 截图位图路径，杜绝 iPad PDF 阅读器把 text-shadow 显示成矩形块；内容页继续矢量打印）
 
 ## 推送更新到 GitHub（仓库 editorial-note-cards）
 本 skill 目录已是 git 仓库，`origin` 指向公开仓库 `https://github.com/xiayi3642-spec/editorial-note-cards`。需要"推送/更新/上传/发布这套卡片"时，按此流程（换会话照做即可推送）：
