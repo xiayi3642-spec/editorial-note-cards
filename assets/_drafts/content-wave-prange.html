@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="UTF-8"><title>content-wave-prange</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{--accent:#CD9FA0;--accent-bright:#857C91;--ink:#525871;--gray:#9A8C9C;--cream:#F7EAE0;--edge:#A97E8B;--highlight:#FFF200;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:url('../media/bg-wave-prange.jpg') center/cover no-repeat;}
+  .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,22,34,.50),rgba(22,14,20,.46));}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(20,8,12,.40);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:42px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent-bright);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:30px;}
+  .sec .lbl{display:flex;align-items:center;gap:14px;background:#FFF3C4;padding:12px 16px;border-radius:8px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .lead .src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.08em;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(169,126,139,.3);border-radius:8px;padding:14px 14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(169,126,139,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(205,159,160,.07);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(169,126,139,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+</style></head><body>
+<div class="bg"></div><div class="veil"></div>
+<div class="frame">
+  <div class="t1"><span>SCUT · MEM</span><span>—— 工程管理导论 · Ch.02</span></div>
+  <div class="rule"></div>
+  <div class="t2"><span>CHAPTER 02 / SYSTEM &amp; ENGINEERING SYSTEM</span><span>02 / 09</span></div>
+  <div class="bot"><span>Engineering Management · CH.02</span><span>SCUT MEM</span></div>
+</div>
+<div class="card">
+  <div class="kicker">SYSTEM &amp; ENGINEERING SYSTEM</div>
+  <h1>系统与工程系统</h1>
+  <div class="sub">Definition · Characteristics · Classification</div>
+  <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">系统是什么</span><span class="an">一般系统理论 GST</span></div>
+      <p class="lead">系统由相互作用、相互依赖的若干要素结合而成，是具有特定功能的<span class="hl">有机整体</span>。<span class="src">贝塔朗菲 · 1945</span><br>对象集须至少包含两个不同元素，且元素按一定方式相互联系。</p>
+    </div>
+    <div class="sec" style="margin-top:44px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">系统八大特征</span><span class="an">判断「成系统」的清单</span></div>
+      <div class="feat">
+        <div class="f"><div class="t">整体性</div><div class="d">整体大于部分之和</div></div>
+        <div class="f"><div class="t">层次性</div><div class="d">结构可分级</div></div>
+        <div class="f"><div class="t">联系性</div><div class="d">要素相互关联</div></div>
+        <div class="f"><div class="t">功能性</div><div class="d">具有特定功能</div></div>
+        <div class="f"><div class="t">矛盾性</div><div class="d">要素间冲突并存</div></div>
+        <div class="f"><div class="t">目的性</div><div class="d">朝目标运行</div></div>
+        <div class="f"><div class="t">演化性</div><div class="d">随时间演进</div></div>
+        <div class="f"><div class="t">开放性</div><div class="d">与环境交换</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅲ</span><span class="t">系统分类</span><span class="an">钱学森 · 1990</span></div>
+      <div class="cls">
+        <div class="cl"><div class="abbr">SSS</div><div class="t">简单小系统</div><div class="d">规模小、要素少、结构简单</div></div>
+        <div class="cl"><div class="abbr">SLS</div><div class="t">简单大系统</div><div class="d">规模大但仍可结构化描述</div></div>
+        <div class="cl"><div class="abbr">SGS</div><div class="t">简单巨系统</div><div class="d">要素极多、难以精确刻画</div></div>
+        <div class="cl"><div class="abbr">CS</div><div class="t">复杂系统</div><div class="d">非线性、涌现、自适应</div></div>
+      </div>
+    </div>
+    <div class="quote"><p>系统不是要素的简单相加，而是「<span class="hl">要素＋联系＋功能</span>」的整体——特征是检查清单，分类决定用哪类方法论。</p></div>
+  </div>
+  <div class="foot"><span>Chapter 02</span><span>System &amp; Engineering System</span></div>
+</div>
+</body></html>

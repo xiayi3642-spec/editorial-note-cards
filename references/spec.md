@@ -66,6 +66,9 @@
 |---|---|---|---|
 | `cover-template.html` | 渐变底+外层白框+全部文字居中（默认） | 任意风格色板（styles/*.md） | 常规课程封面，配风格色板 |
 | `cover-spring.html` | 黄绿垫图背景+白色流线装饰（文字下层）+Didot/回文明朝体 | `media/bg-spring.jpg`、`media/ribbon.svg`、`fonts/{Didot.ttf,Didot-Bold.ttf,Huiwen-mincho.otf}` | 春日/清新系封面；**选它时内容页背景也用同一张垫图** |
+| `cover-izakaya.html` | 暖黄螺旋垫图+深酒红罩层+宋体加粗白字大标题+Didot 英文句+月黄点缀 | `media/bg-izakaya.jpg`、`fonts/Didot*`（封面中文用 Noto Serif SC 宋体加粗） | 大阪霓虹/居酒屋系封面（风格 `osaka-neon`）；**内容页背景用同一张垫图+罩层**；封面可用 text-shadow |
+| `cover-spiral-gold.html` | 金黑螺旋垫图+深罩层+宋体加粗白字大标题+Didot 英文句 | `media/bg-spiral-gold.jpg`、`fonts/Didot*`（封面中文用 Noto Serif SC 宋体加粗） | 鎏金漩涡/东京夜系封面（风格 `spiral-gold`）；**内容页背景用同一张垫图+罩层**；封面白字+可用 text-shadow |
+| `cover-blend-warmcool.html` | 冷暖交融圆斑垫图+深罩层+宋体加粗白字大标题+Didot 英文句 | `media/bg-blend-warmcool.jpg`、`fonts/Didot*`（封面中文用 Noto Serif SC 宋体加粗） | 冷暖交融系封面（风格 `blend-warmcool`）；**内容页背景用同一张垫图+罩层**；封面白字+可用 text-shadow |
 
 ### 标题字号自适应（封面模板已内置）
 按标题字符数（含·号）自动定字号，字少大、字多小并自动换行居中（`.zh` max-width:820px）：
@@ -99,7 +102,7 @@
 |---|---|---|
 | `.kicker` | mono 14px .2em 绿，英文标签 | 从卡顶 padding 起 |
 | `h1` | 34–42px/500 ink | **margin-top:34px** |
-| `.sub` | 15–17px 绿副题英文 | **margin-top:24px** |
+| `.sub` | 15–17px 绿副题英文 | **margin-top:8px** |
 | `.body` | flex:1 | **margin-top:16px**（首模块与副题间距） |
 
 ### 卡内结构（`.body`，padding-bottom:86px，gap 22–30px）
@@ -129,7 +132,7 @@
 
 ## 高发故障清单（历史踩坑，定稿勿改）
 1. **卡位置** `.card` top:190px / bottom:136px（已对齐红线），勿改。
-2. **卡内顶部三处间距** h1 margin-top:34 / sub 24 / body 16，勿改。
+2. **卡内顶部三处间距** h1 margin-top:34 / sub 8 / body 16，勿改。
 3. **`.foot` 吸底**：`position:absolute;bottom:16px` + `.body` padding-bottom:86px；改 `margin-top:auto` 会不吸底。
 4. **渐变方向**：跟随参考图原色块的深色位置（左下浅→右上深为默认；原图其他方向按原图），深色区文字用白、浅色区用深。
 5. **外层白框** `.frame` inset:24px + 白描边；顶部栏/封面文字统一白。

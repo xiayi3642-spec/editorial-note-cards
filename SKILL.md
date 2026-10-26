@@ -27,6 +27,9 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    - `assets/templates/cover-template.html`（默认：渐变底+外层框+居中白字，配任意风格色板）
    - `assets/templates/cover-spring.html`（黄绿垫图+白色流线+Didot/回文明朝体，配 `media/bg-spring.jpg`；素材在 `assets/media/`、`assets/fonts/`）
    - `assets/templates/cover-painting.html`（油画垫图+深墨绿回文明朝体大标题，配 `media/bg-painting.jpg`；风格 `painting-cream-green`，深墨绿字、无流线、**禁用 text-shadow**）
+   - `assets/templates/cover-izakaya.html`（暖黄螺旋垫图+深酒红罩层+宋体加粗白字大标题+Didot 英文+月黄点缀，配 `media/bg-izakaya.jpg`；风格 `osaka-neon`，罩层压暗撑对比，封面可用 text-shadow）
+   - `assets/templates/cover-spiral-gold.html`（金黑螺旋垫图+深罩层+宋体加粗白字大标题+Didot 英文，配 `media/bg-spiral-gold.jpg`；风格 `spiral-gold`，封面白字+可用 text-shadow）
+   - `assets/templates/cover-blend-warmcool.html`（冷暖交融圆斑垫图+深罩层+宋体加粗白字大标题+Didot 英文，配 `media/bg-blend-warmcool.jpg`；风格 `blend-warmcool`，封面白字+可用 text-shadow）
    复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张垫图（整套背景统一）。**
 3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
 4. **渲染 PNG**（高清单卡）：
@@ -44,7 +47,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 
 ## 硬规则
 - 封面：渐变底 + 外层框，**无卡片浮层、无圆圈装饰、全部文字居中、去斜体**。文字颜色随底色：深底白字、浅底深字（参考图驱动时按反推 token 走）。
-- 内容页：卡片 `top:190px / bottom:136px` 已定稿勿改；卡内顶部三处间距（h1 34 / sub 24 / body 16）定稿勿改。
+- 内容页：卡片 `top:190px / bottom:136px` 已定稿勿改；卡内顶部三处间距（h1 34 / sub 8 / body 16）定稿勿改。
 - 全局 `font-style:normal`。
 - **一套一色**：整套笔记卡全程只用**一个**配色风格，不中途切换（风格由参考图反推 / 点名 / 随机决定后，全套不变）。
 - **重点荧光笔**：仅用于非装饰性正文里的重点关键词/短句；默认荧光黄 `#FFF200`，色块位于文字后层、向下偏移，高度约为字高 `30%`。页眉、页码、kicker、英文副题、脚注、纯装饰字不加；禁止整段高亮或把它当普通配色使用。
@@ -54,12 +57,12 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 ## 风格库（styles）
 - 位置：`assets/styles/*.md`，每个文件定义一种完整风格（色板、背景渐变、文字明暗、氛围）
 - **默认随机**：用户不给参考图、也没点名风格时，从风格库**随机抽一个**使用（不再固定默认）；`green-editorial` 仍是库中一员
-- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）
+- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」「大阪霓虹」「鎏金漩涡」「冷暖交融」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）、`osaka-neon`（大阪霓虹）、`spiral-gold`（鎏金漩涡）、`blend-warmcool`（冷暖交融）
 - **新增风格**：把用户确认/沉淀的风格写成 `assets/styles/<风格名>.md`，沿用同格式（名称、默认否、氛围、色板、字体、结构引用），即成为可切换选项
 
 ## 维护
-- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`content-template.html`（定稿示例）
-- 封面素材：`assets/media/bg-spring.jpg`（黄绿垫图）、`bg-painting.jpg`（印象派油画垫图）、`ribbon.svg`（白色流线）；字体 `assets/fonts/`（Didot + 回文明朝体）
+- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`content-template.html`、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`（定稿示例）
+- 封面素材：`assets/media/bg-spring.jpg`（黄绿垫图）、`bg-painting.jpg`（印象派油画垫图）、`bg-izakaya.jpg`（暖黄螺旋垫图）、`bg-spiral-gold.jpg`（金黑螺旋垫图）、`bg-blend-warmcool.jpg`（冷暖交融圆斑垫图）、`ribbon.svg`（白色流线）；字体 `assets/fonts/`（Didot + 回文明朝体）
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`
 - 渲染：`scripts/html2png.mjs`、`scripts/html2pdf.mjs`（封面文件名含 cover 自动走整页 2x 截图位图路径，杜绝 iPad PDF 阅读器把 text-shadow 显示成矩形块；内容页继续矢量打印）
