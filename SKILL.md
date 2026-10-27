@@ -57,11 +57,11 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 ## 风格库（styles）
 - 位置：`assets/styles/*.md`，每个文件定义一种完整风格（色板、背景渐变、文字明暗、氛围）
 - **默认随机**：用户不给参考图、也没点名风格时，从风格库**随机抽一个**使用（不再固定默认）；`green-editorial` 仍是库中一员
-- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」「大阪霓虹」「鎏金漩涡」「冷暖交融」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）、`osaka-neon`（大阪霓虹）、`spiral-gold`（鎏金漩涡）、`blend-warmcool`（冷暖交融）
+- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」「大阪霓虹」「鎏金漩涡」「冷暖交融」「小红书浅蓝便签」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）、`osaka-neon`（大阪霓虹）、`spiral-gold`（鎏金漩涡）、`blend-warmcool`（冷暖交融）、`xhs-patato`（小红书浅蓝便签）
 - **新增风格**：把用户确认/沉淀的风格写成 `assets/styles/<风格名>.md`，沿用同格式（名称、默认否、氛围、色板、字体、结构引用），即成为可切换选项
 
 ## 维护
-- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`content-template.html`、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`（定稿示例）
+- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`cover-xhs-patato.html`、`content-template.html`、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`、`content-xhs-patato.html`（定稿示例）
 - 封面素材：`assets/media/bg-spring.jpg`（黄绿垫图）、`bg-painting.jpg`（印象派油画垫图）、`bg-izakaya.jpg`（暖黄螺旋垫图）、`bg-spiral-gold.jpg`（金黑螺旋垫图）、`bg-blend-warmcool.jpg`（冷暖交融圆斑垫图）、`ribbon.svg`（白色流线）；字体 `assets/fonts/`（Didot + 回文明朝体）
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`

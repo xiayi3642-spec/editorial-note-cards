@@ -106,7 +106,8 @@
 | `.body` | flex:1 | **margin-top:16px**（首模块与副题间距） |
 
 ### 卡内结构（`.body`，padding-bottom:86px，gap 22–30px）
-- `.sec` 板块：`.lbl{border-bottom:1px solid rgba(74,124,58,.35);padding-bottom:10px;margin-bottom:16px;display:flex;baseline}`，含 `.no`（Playfair 22px 绿序号）、`.t`（22px/500 标题）、`.an`（14px 灰右对齐注解）
+- `.sec` 板块：`.lbl{border-bottom:1px solid rgba(74,124,58,.35);padding-bottom:10px;margin-bottom:16px;display:flex;align-items:baseline;gap:14px}`，含 `.no`（Playfair 22px 绿序号）、`.t`（22px/500 标题）、`.an`（14px 灰右对齐注解）
+- **硬规则：板块标签 `.sec .lbl` 一律用下划线分隔，禁止背景色块（`background:#FFF3C4`/`#EAF4FB` 等）、禁止圆角 padding 块、禁止 3px 左条**——下划线是唯一装饰。此规则曾在多个模板里被偏离成淡黄色块，已全局回修，新增模板不得再犯。
 - `.lead` 正文：16px line-height 1.85 ink，`b` 绿强调
 - `.feat/.f` 特征网格：`grid repeat(4,1fr) gap:14`，`.f` 圆角8 细边框，`.t` 17px/500，`.d` 12.5px 灰
 - `.cls/.cl` 分类网格：`grid 1fr 1fr gap:14`，`.cl` padding 16 18，`.abbr` mono 绿，`.t` 18px/500，`.d` 13px 灰

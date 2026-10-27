@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>未来薯地计划 · 缘起</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --accent:#3E9BFF;       /* 亮蓝：kicker/序号/边 */
+    --accent2:#B5651D;      /* 暖棕：次框/强调数 */
+    --ink:#2C3E50;          /* 正文深灰蓝 */
+    --title:#5C2A1E;        /* 标题深棕红 */
+    --gray:#7A8A99;
+    --cream:#FBFEFF;         /* 白卡底 */
+    --edge:#7EC3F5;
+    --highlight:#FFE066;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.85) 0 2px, transparent 2px 16px),
+      linear-gradient(180deg,#EAF4FB 0%,#D6EAF8 100%);
+  }
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(62,155,255,.45);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:var(--accent);font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(62,155,255,.35);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(62,155,255,.85);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(62,155,255,.18);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:42px;font-weight:700;color:var(--title);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent2);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(62,155,255,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:21px;font-weight:600;color:var(--title);}
+  .sec .lbl .an{font-size:13px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent2);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.55;border-radius:.04em;transform:rotate(-.35deg);}
+  /* 数据块：三个数字横排 */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;background:linear-gradient(135deg,#FFF9E6,#FFF3D0);border:1px dashed var(--accent2);border-radius:12px;padding:22px 18px;}
+  .stats .st{text-align:center;}
+  .stats .num{font-family:'Playfair Display','Georgia',serif;font-size:34px;font-weight:700;color:var(--accent2);line-height:1;}
+  .stats .lb{font-size:13px;color:var(--ink);margin-top:8px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(62,155,255,.07);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.8;color:var(--ink);}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(62,155,255,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="frame">
+  <div class="t1"><span>XIAOHONGSHU</span><span>—— 未来薯地计划 · 共建邀约</span></div>
+  <div class="rule"></div>
+  <div class="t2"><span>FUTURE POTATO LAND</span><span>02 / 03</span></div>
+  <div class="bot"><span>Co-construction Invitation</span><span>XHS · Teen Mode</span></div>
+</div>
+<div class="card">
+  <div class="kicker">FUTURE POTATO LAND · CO-CONSTRUCTION</div>
+  <h1>「未来薯地计划」</h1>
+  <div class="sub">从线上内容，走到线下场景</div>
+  <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">计划缘起</span><span class="an">未成年人模式</span></div>
+      <p class="lead">今年夏天，小红书发起了「未来薯地计划」，邀请全国媒体、少儿频道、出版机构、博物馆、高校、科普美育及公益教育等机构，一起为小红书未成年人模式带来更多<span class="hl">看得懂、愿意看、真正有收获</span>的好内容。</p>
+    </div>
+    <div class="stats">
+      <div class="st"><div class="num">200+</div><div class="lb">共建机构已加入</div></div>
+      <div class="st"><div class="num">9000万</div><div class="lb">累计新增曝光</div></div>
+      <div class="st"><div class="num">16万</div><div class="lb">新增赞粉</div></div>
+    </div>
+    <div class="sec" style="margin-top:8px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">好内容不止于屏幕</span><span class="an">线上兴趣 → 线下去处</span></div>
+      <p class="lead">一段好内容能带来的，往往不止于屏幕。<br>
+      看完一段青铜器科普笔记，有人想去博物馆看看真品、听听现场讲解；<br>
+      刷到一篇观鸟笔记，有人第一次在小区里抬头找鸟，也想去动物园认识更多鸟类。</p>
+    </div>
+    <div class="quote">
+      <p>线上被点亮的兴趣，值得在真实生活里找到去处。尤其在 AI 快速发展的今天，<b>亲身体验、动手创作、与人协作</b>，对青少年来说尤为珍贵。</p>
+    </div>
+  </div>
+  <div class="foot"><span>Chapter · Origin</span><span>From Online to Offline</span></div>
+</div>
+</body>
+</html>
