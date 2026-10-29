@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>野雪笔记 · 目录</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --acc:#B9A6FF; --ink:#2A2438; --gray:#8A8399;
+    --cream:#FAF6E8; --edge:#8B7BD8; --highlight:#FFD84D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background-image:url('bg-inner.jpg');background-size:cover;background-position:center;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.4);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.3);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(22,18,40,.28);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--acc);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:20px;}
+  .toc-note{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:4px;}
+  .toc{display:flex;flex-direction:column;}
+  .toc-item{display:flex;align-items:baseline;gap:22px;padding:20px 6px;border-bottom:1px solid rgba(139,123,216,.18);}
+  .toc-item .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:26px;color:var(--acc);min-width:52px;}
+  .toc-item .txt{flex:1;}
+  .toc-item .txt .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .toc-item .txt .d{font-size:13px;color:var(--gray);margin-top:3px;line-height:1.5;}
+  .toc-item .pg{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:24px;color:var(--acc);}
+  .toc-item .go{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--acc);opacity:.55;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(139,123,216,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="frame">
+  <div class="t1"><span>SCUT · MEM</span><span>—— 野雪笔记 · 示例</span></div>
+  <div class="rule"></div>
+  <div class="t2"><span>FREERIDE / CONTENTS</span><span>02 / 03</span></div>
+  <div class="bot"><span>Freeride Notes · Example</span><span>SCUT MEM</span></div>
+</div>
+<div class="card">
+  <div class="kicker">CONTENTS · 目录</div>
+  <h1>本册内容</h1>
+  <div class="sub">点击章节跳转 · Click to jump</div>
+  <div class="body">
+    <div class="toc-note">TABLE OF CONTENTS</div>
+    <div class="toc">
+      <div class="toc-item" data-target="card-02-rules.html"><span class="no">01</span><div class="txt"><div class="t">野雪：规则与装备</div><div class="d">Definition · Gear · Snow &amp; Terrain</div></div><span class="pg">03</span><span class="go">→</span></div>
+      <div class="toc-item" data-target="card-03-safety.html"><span class="no">02</span><div class="txt"><div class="t">安全底线与赛事巡回</div><div class="d">Safety · Line Choice · FWT</div></div><span class="pg">04</span><span class="go">→</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Contents</span><span>Click to jump</span></div>
+</div>
+</body>
+</html>

@@ -153,10 +153,25 @@ node scripts/html2png.mjs <card-01.html> <card-02.html> ... --width 1080 --heigh
 
 ## 合并 PDF（scripts/html2pdf.mjs）
 ```bash
-node scripts/html2pdf.mjs <card-01.html> <card-02.html> ... --out 输出.pdf --width 1080 --height 1440
+node scripts/html2pdf.mjs <card-01.html> <card-02.html> ... --out 输出.pdf --width 1080 --height 1440 [--toc 目录页.html]
 ```
 - 把整套卡片合并成一份 PDF，每张卡一页；每页 810×1080pt（= 1080×1440 CSS px，等比无缩放），渐变背景保留
+- `--toc` 指定目录页 HTML（排到封面之后），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接（点击跳转）；files 列表须含目录页本身
 - 依赖：全局 playwright + `pdf-lib`；改 `loadModule('playwright'/'pdf-lib', [...])` 候选列表适配路径
 
 ## 封面 → 内容页页码约定
 内容页 `NN / 09` 与每页 `.t2` 主题、`.foot` 英文主题按章节内容拆分页数对应。
+
+## 目录页（第二页，像书的目录）
+整套卡片渲染 PDF 时，第 2 页插入一份「目录页」，让读者先概览整份 PDF 讲什么，并可通过点击目录项直接跳转到对应内容页。使用 `assets/templates/toc-template.html`，结构固定（外层框 + 米色卡 + 色板可变）。
+
+- **位置**：封面第 1 页 → 目录第 2 页 → 各内容页从第 3 页起。目录页与内容页一样走矢量打印。
+- **目录项** `.toc-item`：`<span class="no">` 序号（01/02…）、`.txt .t` 章节中文标题、`.txt .d` 英文副题、`.pg` 该内容页在 PDF 中的页码、`.go` 箭头 `→`。
+- **跳转绑定（关键）**：每个 `.toc-item` 的 `data-target` 写该内容页的 HTML 文件名（如 `card-02.html`）。渲染时 `html2pdf.mjs` 通过 DOM 实测取每个目录项的位置矩形，把文件名匹配到 files 中对应内容页，用 pdf-lib 添加 `GoTo` 内部链接注解——在 PDF 阅读器（Acrobat / Preview / 豆包打开 PDF 等）里点击目录项即跳到对应页。
+- **页码一致性**：目录 `.pg` 与对应内容页右上 `.t2` 的 `NN` 用同一套真实页码（封面 1、目录 2、内容页 3…）。整套含封面+目录时，内容页页码 = 封面1 + 目录1 + 内容页顺序号。
+- **渲染命令**：目录页仅由 `--toc` 指定（files 只列封面＋各内容页，不含目录页）。例：
+  ```bash
+  node scripts/html2pdf.mjs card-01-cover.html card-02.html card-03.html --out notes.pdf --toc card-toc.html
+  ```
+  脚本将目录页插入到封面之后（PDF 第 2 页），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接。
+- 目录项数量 = 内容页数量；`data-target` 必须能在 files 中匹配到对应文件，否则脚本告警跳过该项跳转（页码仍显示，只是不可点击）。

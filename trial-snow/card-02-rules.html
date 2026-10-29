@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>野雪 · 规则与装备</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --acc:#B9A6FF; --ink:#2A2438; --gray:#8A8399;
+    --cream:#FAF6E8; --edge:#8B7BD8; --highlight:#FFD84D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background-image:url('bg-inner.jpg');background-size:cover;background-position:center;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.4);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.3);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(22,18,40,.28);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:500;}
+  h1{font-size:40px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--acc);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:28px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(139,123,216,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--acc);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:#6B5BD0;font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .lead .src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--acc);letter-spacing:.08em;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(139,123,216,.3);border-radius:8px;padding:14px 14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(139,123,216,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6B5BD0;}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--acc);background:rgba(139,123,216,.10);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:#6B5BD0;font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(139,123,216,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="frame">
+  <div class="t1"><span>SCUT · MEM</span><span>—— 野雪笔记 · 示例</span></div>
+  <div class="rule"></div>
+  <div class="t2"><span>FREERIDE / RULES &amp; GEAR</span><span>02 / 03</span></div>
+  <div class="bot"><span>Freeride Notes · Example</span><span>SCUT MEM</span></div>
+</div>
+<div class="card">
+  <div class="kicker">RULES &amp; GEAR</div>
+  <h1>野雪：规则与装备</h1>
+  <div class="sub">Definition · Gear · Snow &amp; Terrain</div>
+  <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">什么是野雪</span><span class="an">Freeride / Backcountry</span></div>
+      <p class="lead">野雪指在<span class="hl">未压雪、未设道的自然山地</span>中滑行，强调自由选线、粉雪与地形。它与普通雪道滑行最大的区别在于<span class="hl">无人工维护</span>，需要滑行者自行判断雪况与风险。<span class="src">示例笔记</span></p>
+    </div>
+    <div class="sec" style="margin-top:40px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">基础装备</span><span class="an">三大件</span></div>
+      <div class="feat">
+        <div class="f"><div class="t">雪板</div><div class="d">加宽板底</div></div>
+        <div class="f"><div class="t">雪鞋</div><div class="d">舒适贴合</div></div>
+        <div class="f"><div class="t">固定器</div><div class="d">强度可靠</div></div>
+        <div class="f"><div class="t">雪杖</div><div class="d">长度适配</div></div>
+        <div class="f"><div class="t">雪镜</div><div class="d">防眩护眼</div></div>
+        <div class="f"><div class="t">头盔</div><div class="d">安全第一</div></div>
+        <div class="f"><div class="t">背包</div><div class="d">装安全装备</div></div>
+        <div class="f"><div class="t">对讲</div><div class="d">团队联络</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅲ</span><span class="t">雪况分类</span><span class="an">Powder / Crust / Slush</span></div>
+      <div class="cls">
+        <div class="cl"><div class="abbr">PW</div><div class="t">粉雪</div><div class="d">干燥蓬松，易滑且安全</div></div>
+        <div class="cl"><div class="abbr">CR</div><div class="t">硬壳</div><div class="d">表层结冰，较难控制</div></div>
+        <div class="cl"><div class="abbr">SL</div><div class="t">烂雪</div><div class="d">湿重黏滞，消耗体能</div></div>
+        <div class="cl"><div class="abbr">HP</div><div class="t">冰面</div><div class="d">硬度高，易滑倒</div></div>
+      </div>
+    </div>
+    <div class="quote"><p>野雪的关键不是「敢」，而是「<span class="hl">读雪况、控风险</span>」——装备齐全只是起点，判断力才是底线。</p></div>
+  </div>
+  <div class="foot"><span>Chapter 01</span><span>Rules &amp; Gear</span></div>
+</div>
+</body>
+</html>

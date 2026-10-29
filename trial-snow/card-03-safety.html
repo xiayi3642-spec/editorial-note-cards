@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>野雪 · 安全与赛事</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --acc:#B9A6FF; --ink:#2A2438; --gray:#8A8399;
+    --cream:#FAF6E8; --edge:#8B7BD8; --highlight:#FFD84D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background-image:url('bg-inner.jpg');background-size:cover;background-position:center;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.4);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.3);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(22,18,40,.28);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--acc);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:30px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(139,123,216,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--acc);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:#6B5BD0;font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .lead .src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--acc);letter-spacing:.08em;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(139,123,216,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6B5BD0;}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--acc);background:rgba(139,123,216,.10);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:#6B5BD0;font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(139,123,216,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="frame">
+  <div class="t1"><span>SCUT · MEM</span><span>—— 野雪笔记 · 示例</span></div>
+  <div class="rule"></div>
+  <div class="t2"><span>FREERIDE / SAFETY &amp; TOUR</span><span>03 / 03</span></div>
+  <div class="bot"><span>Freeride Notes · Example</span><span>SCUT MEM</span></div>
+</div>
+<div class="card">
+  <div class="kicker">SAFETY &amp; TOUR</div>
+  <h1>安全底线与赛事巡回</h1>
+  <div class="sub">Safety · Line Choice · FWT</div>
+  <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">安全三原则</span><span class="an">雪崩安全 ABC</span></div>
+      <p class="lead">出发前确认<span class="hl">雪崩风险等级</span>与天气预报；随队携带<span class="hl">雪崩信标＋探杆＋雪铲</span>并会用；永远不要独自进野雪区，线路选择遵循「<b>由缓到陡、控速控距</b>」。</p>
+    </div>
+    <div class="sec" style="margin-top:40px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">风险分级</span><span class="an">AT / EU 分级</span></div>
+      <div class="cls">
+        <div class="cl"><div class="abbr">L1</div><div class="t">低风险</div><div class="d">缓坡开阔，视野良好</div></div>
+        <div class="cl"><div class="abbr">L2</div><div class="t">中等</div><div class="d">局部陡坡，需判断</div></div>
+        <div class="cl"><div class="abbr">L3</div><div class="t">高风险</div><div class="d">雪檐陡壁，易触发</div></div>
+        <div class="cl"><div class="abbr">L4</div><div class="t">极高</div><div class="d">建议放弃滑行</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅲ</span><span class="t">FWT 巡回赛</span><span class="an">Freeride World Tour</span></div>
+      <p class="lead">FWT 以<span class="hl">自然地形选线＋风格＋控制力</span>综合评分，分资格赛与正赛，场地覆盖全球知名野雪山脉，中国设有分站。</p>
+    </div>
+    <div class="quote"><p>真正的高手不是滑得最险，而是<span class="hl">读得最准</span>——安全永远排在风格之前。</p></div>
+  </div>
+  <div class="foot"><span>Chapter 02</span><span>Safety &amp; Tour</span></div>
+</div>
+</body>
+</html>

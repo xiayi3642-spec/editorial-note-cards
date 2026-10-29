@@ -32,18 +32,19 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    - `assets/templates/cover-blend-warmcool.html`（冷暖交融圆斑垫图+深罩层+宋体加粗白字大标题+Didot 英文，配 `media/bg-blend-warmcool.jpg`；风格 `blend-warmcool`，封面白字+可用 text-shadow）
    复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张垫图（整套背景统一）。**
 3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
-4. **渲染 PNG**（高清单卡）：
+4. **写目录页** `card-toc.html`（第二页，像书的目录）：复制 `assets/templates/toc-template.html`，复制 `.toc-item` 行，每行对应一张内容页，`<span class="no">` 写序号、`.t` 写章节标题、`.d` 写英文副题、`.pg` 写该内容页在 PDF 中的页码；**关键**：每行 `.toc-item` 的 `data-target` 写该内容页的 HTML 文件名（如 `card-02.html`），脚本据此生成可点击跳转的内部链接。页码约定：封面第 1 页、目录第 2 页、内容页从第 3 页起，所以 `NN / 09` 中的 `NN` 与目录 `.pg` 保持一致（内容页实际页号 = 封面+目录后的真实序号）。
+5. **渲染 PNG**（高清单卡）：
    ```bash
    node scripts/html2png.mjs card-01-cover.html card-02-x.html ... --width 1080 --height 1440 --scale 1
    ```
    **分批渲染**（每批 2–3 张，避免超时）。
-5. **渲染 PDF**（合并整套，每卡一页，可选）：
+6. **渲染 PDF**（合并整套，每卡一页，可选）：
    ```bash
-   node scripts/html2pdf.mjs card-01-cover.html card-02-x.html ... --out notes-ch02.pdf --width 1080 --height 1440
+   node scripts/html2pdf.mjs card-01-cover.html card-02-x.html card-03-y.html ... --out notes-ch02.pdf --width 1080 --height 1440 --toc card-toc.html
    ```
-   依赖 `pdf-lib`；输出每页 810×1080pt（1080×1440 CSS px 等比，无缩放）。
-6. **自查**：Read PNG/PDF 预览，核对外层元信息正确、卡内无文字溢出/重叠、`.foot` 吸底、无斜体；同时检查 `.hl` 只落在正文重点短语、没有跨行、黄色色块位于文字后层且未遮住字形主体。
-7. **交付**：PNG 用 RichMediaCard 整组交付（本地绝对路径）；PDF 用 present_files 交付；HTML 仅作源文件不单独交付。用户要求时两种都给。
+   依赖 `pdf-lib`；输出每页 810×1080pt（1080×1440 CSS px 等比，无缩放）。`--toc` 指定目录页 HTML，脚本会把目录页**插入到封面之后**（作为 PDF 第 2 页），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接注解——**在 PDF 阅读器中点击目录项即可跳转到对应页**。**files 只列封面＋各内容页，不含目录页**（目录页仅由 `--toc` 指定）。
+7. **自查**：Read PNG/PDF 预览，核对外层元信息正确、卡内无文字溢出/重叠、`.foot` 吸底、无斜体；同时检查 `.hl` 只落在正文重点短语、没有跨行、黄色色块位于文字后层且未遮住字形主体。
+8. **交付**：PNG 用 RichMediaCard 整组交付（本地绝对路径）；PDF 用 present_files 交付；HTML 仅作源文件不单独交付。用户要求时两种都给。
 
 ## 硬规则
 - 封面：渐变底 + 外层框，**无卡片浮层、无圆圈装饰、全部文字居中、去斜体**。文字颜色随底色：深底白字、浅底深字（参考图驱动时按反推 token 走）。
