@@ -30,6 +30,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    - `assets/templates/cover-izakaya.html`（暖黄螺旋垫图+深酒红罩层+宋体加粗白字大标题+Didot 英文+月黄点缀，配 `media/bg-izakaya.jpg`；风格 `osaka-neon`，罩层压暗撑对比，封面可用 text-shadow）
    - `assets/templates/cover-spiral-gold.html`（金黑螺旋垫图+深罩层+宋体加粗白字大标题+Didot 英文，配 `media/bg-spiral-gold.jpg`；风格 `spiral-gold`，封面白字+可用 text-shadow）
    - `assets/templates/cover-blend-warmcool.html`（冷暖交融圆斑垫图+深罩层+宋体加粗白字大标题+Didot 英文，配 `media/bg-blend-warmcool.jpg`；风格 `blend-warmcool`，封面白字+可用 text-shadow）
+   - `assets/templates/cover-xueshan-purple.html`（黑紫泼墨雪山垫图+回文明朝体大标题+Playfair 英文+三行板块列表，配 `media/bg-xueshan-purple.jpg`；风格 `xueshan-purple`，封面白字、无流线、无蒙层）
    复制所选模板，替换占位（标题/英文句/底部词）；**标题字号按字数自适应**（≤4字150px、5字132px、6–7字112/96px、8–9字86px、≥10字76px并自动换行），模板已内置该规则。**封面选了垫图版式时，内容页背景也用同一张垫图（整套背景统一）。**
 3. **写内容页** `card-02..card-NN.html`：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
 4. **写目录页** `card-toc.html`（第二页，像书的目录）：复制 `assets/templates/toc-template.html`，复制 `.toc-item` 行，每行对应一张内容页，`<span class="no">` 写序号、`.t` 写章节标题、`.d` 写英文副题、`.pg` 写该内容页在 PDF 中的页码；**关键**：每行 `.toc-item` 的 `data-target` 写该内容页的 HTML 文件名（如 `card-02.html`），脚本据此生成可点击跳转的内部链接。页码约定：封面第 1 页、目录第 2 页、内容页从第 3 页起，所以 `NN / 09` 中的 `NN` 与目录 `.pg` 保持一致（内容页实际页号 = 封面+目录后的真实序号）。
@@ -58,12 +59,12 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 ## 风格库（styles）
 - 位置：`assets/styles/*.md`，每个文件定义一种完整风格（色板、背景渐变、文字明暗、氛围）
 - **默认随机**：用户不给参考图、也没点名风格时，从风格库**随机抽一个**使用（不再固定默认）；`green-editorial` 仍是库中一员
-- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」「大阪霓虹」「鎏金漩涡」「冷暖交融」「小红书浅蓝便签」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山）、`painting-cream-green`（奶油绿油画）、`osaka-neon`（大阪霓虹）、`spiral-gold`（鎏金漩涡）、`blend-warmcool`（冷暖交融）、`xhs-patato`（小红书浅蓝便签）、`red-notebook`（红布面笔记本）
+- 切换：用户给了对应风格的参考图，或点名风格名（如「午夜幻影」「星夜暖暮」「奶油绿油画」「大阪霓虹」「鎏金漩涡」「冷暖交融」「小红书浅蓝便签」「紫色雪山」「紫雪山」）→ 用该风格；已有：`green-editorial`（绿色）、`gradient-pink-blue`（粉蓝紫）、`gradient-pink-green`（粉绿）、`gradient-yellow-cyan`（黄青蓝）、`gradient-pink-blue-deep`（粉蓝紫深调）、`gradient-pink-green-deep`（粉绿深调）、`gradient-midnight`（午夜幻影·蓝）、`gradient-serene`（赤霞绯梦·红粉）、`starry-night-warm`（星夜暖暮）、`nebula-violet`（星云紫夜）、`chunhe-jingming`（春和景明）、`xueshan`（雪山·深蓝）、`xueshan-purple`（紫色雪山·黑紫泼墨）、`painting-cream-green`（奶油绿油画）、`osaka-neon`（大阪霓虹）、`spiral-gold`（鎏金漩涡）、`blend-warmcool`（冷暖交融）、`xhs-patato`（小红书浅蓝便签）、`red-notebook`（红布面笔记本）
 - **新增风格**：把用户确认/沉淀的风格写成 `assets/styles/<风格名>.md`，沿用同格式（名称、默认否、氛围、色板、字体、结构引用），即成为可切换选项
 
 ## 维护
-- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`cover-xhs-patato.html`、`content-template.html`、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`、`content-xhs-patato.html`、`cover-notebook.html`、`content-notebook.html`（定稿示例）
-- 封面素材：`assets/media/bg-spring.jpg`、`bg-painting.jpg`、`bg-izakaya.jpg`、`bg-spiral-gold.jpg`、`bg-blend-warmcool.jpg`、`bg-patato.jpg`、`bg-notebook-cover.jpg`（红布面笔记本封面）、`bg-notebook-inner.jpg`（白纸别签内容页）；字体 `assets/fonts/`（Didot + 回文明朝体 + 京華老宋体 jinghua-songti.ttf）
+- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`cover-xhs-patato.html`、`cover-xueshan-purple.html`、`content-template.html`、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`、`content-xhs-patato.html`、`content-xueshan-purple.html`、`cover-notebook.html`、`content-notebook.html`（定稿示例）
+- 封面素材：`assets/media/bg-spring.jpg`、`bg-painting.jpg`、`bg-izakaya.jpg`、`bg-spiral-gold.jpg`、`bg-blend-warmcool.jpg`、`bg-patato.jpg`、`bg-xueshan-purple.jpg`（黑紫泼墨+雪山封面）、`bg-xueshan-purple-inner.jpg`（同系深紫内容页垫图）、`bg-notebook-cover.jpg`（红布面笔记本封面）、`bg-notebook-inner.jpg`（白纸别签内容页）；字体 `assets/fonts/`（Didot + 回文明朝体 + 京華老宋体 jinghua-songti.ttf）
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`
 - 渲染：`scripts/html2png.mjs`、`scripts/html2pdf.mjs`（封面文件名含 cover 自动走整页 2x 截图位图路径，杜绝 iPad PDF 阅读器把 text-shadow 显示成矩形块；内容页继续矢量打印）
