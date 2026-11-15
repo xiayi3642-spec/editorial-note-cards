@@ -139,6 +139,9 @@
 5. **外层白框** `.frame` inset:24px + 白描边；顶部栏/封面文字统一白。
 6. **渲染分批**：9 张一次同批会超时（exit 143），每批 2–3 张。
 7. **交付前必须审计**：见下方 `--check`；带溢出/裁剪/单行槽换行的卡不得交付，**禁用 `overflow:hidden` 掩盖**（会隐藏文字而非修复）。
+8. **缺目录页 / 缺方格页**：两者是强制的第 2 页和最后一页；交付前清点文件数＝`T`，首尾页命名与页序对得上。
+9. **目录序号别用罗马细笔画**：`Ⅰ/Ⅱ/Ⅲ` 在小字号 Playfair 下会糊成一根竖线，`.no` 一律用 `01/02/03` 阿拉伯两位数。
+10. **方格页格线穿字**：`.kicker` 与 `.foot` 必须带 `--cream` 底色遮线；不要用整块白底盖住网格（会破坏细方格连续性）。
 
 ## 渲染（scripts/html2png.mjs）
 ```bash
@@ -156,14 +159,26 @@ node scripts/html2png.mjs <card-01.html> <card-02.html> ... --width 1080 --heigh
 node scripts/html2pdf.mjs <card-01.html> <card-02.html> ... --out 输出.pdf --width 1080 --height 1440 [--toc 目录页.html]
 ```
 - 把整套卡片合并成一份 PDF，每张卡一页；每页 810×1080pt（= 1080×1440 CSS px，等比无缩放），渐变背景保留
-- `--toc` 指定目录页 HTML（排到封面之后），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接（点击跳转）；files 列表须含目录页本身
+- `--toc` 指定目录页 HTML（排到封面之后，PDF 第 2 页），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接（点击跳转）；**files 只列封面＋内容页＋末页方格页，不含目录页**
 - 依赖：全局 playwright + `pdf-lib`；改 `loadModule('playwright'/'pdf-lib', [...])` 候选列表适配路径
 
-## 封面 → 内容页页码约定
-内容页 `NN / 09` 与每页 `.t2` 主题、`.foot` 英文主题按章节内容拆分页数对应。
+## 整套页序与页码契约（强制）
+`T = 1(封面) + 1(目录页) + N(内容页) + 1(细方格空白页)`
 
-## 目录页（第二页，像书的目录）
-整套卡片渲染 PDF 时，第 2 页插入一份「目录页」，让读者先概览整份 PDF 讲什么，并可通过点击目录项直接跳转到对应内容页。使用 `assets/templates/toc-template.html`，结构固定（外层框 + 米色卡 + 色板可变）。
+| 页 | 文件 | `.t2` 右侧页码 |
+|---|---|---|
+| 封面 | `card-01-cover.html` | 不标页码 |
+| 目录页 | `card-toc.html` | `02 / T` |
+| 内容页 | `card-02-…` … `card-{T-1}-…` | `03 / T` … `(T-1) / T`，连续不跳号 |
+| 细方格空白页 | `card-{T}-blank-grid.html` | `T / T` |
+
+- 内容页 `NN / T` 与 `.t2` 主题、`.foot` 英文主题按章节内容拆分页数对应
+- 目录 `.pg` ＝ 对应内容页第一张的真实页码，必须逐条对得上；目录 `.t`/`.d` 与内容页 `h1`/`.sub` 同源
+- 页序不可调整：目录页不能挪到内容页之后，方格页不能插在中间，也不能因「用户没要求」「只出 PNG」而省略
+- PDF 合并顺序＝页序（`--toc` 自动插到封面后）；PNG 交付顺序同样按页序整组给出
+
+## 目录页（第二页，像书的目录 · **强制**）
+**每一套都必须有目录页，固定为第 2 页、紧跟封面**（PNG 与 PDF 都要有）。它让读者先概览整份笔记讲什么，并可通过点击目录项直接跳转到对应内容页。使用 `assets/templates/toc-template.html`，结构固定（外层框 + 米色卡 + 色板可变）。
 
 - **位置**：封面第 1 页 → 目录第 2 页 → 各内容页从第 3 页起。目录页与内容页一样走矢量打印。
 - **目录项** `.toc-item`：`<span class="no">` 序号（01/02…）、`.txt .t` 章节中文标题、`.txt .d` 英文副题、`.pg` 该内容页在 PDF 中的页码、`.go` 箭头 `→`。
@@ -175,3 +190,24 @@ node scripts/html2pdf.mjs <card-01.html> <card-02.html> ... --out 输出.pdf --w
   ```
   脚本将目录页插入到封面之后（PDF 第 2 页），并为每个 `.toc-item` 的 `data-target` 对应内容页添加 GoTo 内部链接。
 - 目录项数量 = 内容页数量；`data-target` 必须能在 files 中匹配到对应文件，否则脚本告警跳过该项跳转（页码仍显示，只是不可点击）。
+- **禁止**：塞正文、引文、荧光笔 `.hl`、背景色块标签；目录页只承担导航职能
+
+## 细方格空白页（`blank-grid-template.html` · **强制最后一页**）
+每套笔记必须以此页收尾，给使用者留手写空间。结构固定、色板可变。
+
+- 外层：与内容页同构（`.bg/.frame/.t1/.rule/.t2/.bot`）；`.t2` 左 `CHAPTER XX / FREE NOTES`、右 `T / T`；`.foot` 左 `Chapter XX`、右 `Blank · Grid`
+- 奶油卡：同一 `.card` 几何（`top:190px / bottom:136px / left-right:105px`），内部只保留四件东西：
+  - `.grid` 细方格层：`position:absolute;inset:0 0 64px 0`（底部 64px 让给页脚条），`border-radius:12px 12px 0 0`，`overflow:hidden`（仅用于裁网格，不用于掩盖文字）
+  - `.kicker`（`NOTES · FREE SPACE`，absolute 左上，带 `--cream` 底色遮线，避免格线穿字）
+  - `.foot`（带 `--cream` 底色，格线不穿页脚文字）
+- 细方格实现（**不得改成横线纸/点阵纸**）：
+  ```css
+  :root{--grid:20px; --grid-line:rgba(74,124,58,.22);}   /* 20px ≈ 4mm */
+  .grid{background-image:
+      linear-gradient(to right, var(--grid-line) 0 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 0 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);}
+  ```
+  - 线宽固定 1px、透明度 .18–.26；`--grid` 可 18–24px 微调，**默认 20px**
+  - `--grid-line` 由本风格 accent（`--green`/`--edge`）派生，随整套换色；垫图风格时同样铺同一张垫图 + 罩层
+- **页面必须空白**：除 kicker、页脚、外层元信息外，禁止任何标题正文、提示语、荧光笔、插图或装饰

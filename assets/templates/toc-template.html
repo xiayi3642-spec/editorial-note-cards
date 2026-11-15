@@ -42,7 +42,7 @@
 <div class="frame">
   <div class="t1"><span>SCUT · MEM</span><span>—— 章节名 · Ch.XX</span></div>
   <div class="rule"></div>
-  <div class="t2"><span>CHAPTER XX / CONTENTS</span><span>02 / 09</span></div>
+  <div class="t2"><span>CHAPTER XX / CONTENTS</span><span>02 / T</span></div>
   <div class="bot"><span>Course · Ch.XX</span><span>SCUT MEM</span></div>
 </div>
 <div class="card">
@@ -52,10 +52,10 @@
   <div class="body">
     <div class="toc-note">TABLE OF CONTENTS</div>
     <div class="toc">
-      <!-- 目录项：每项 data-target 为该内容页在 PDF 中的页码（1-based），脚本据此加内部链接 -->
-      <div class="toc-item" data-target="3"><span class="no">01</span><div class="txt"><div class="t">第一节标题</div><div class="d">Section sub · English</div></div><span class="pg">03</span><span class="go">→</span></div>
-      <div class="toc-item" data-target="4"><span class="no">02</span><div class="txt"><div class="t">第二节标题</div><div class="d">Section sub · English</div></div><span class="pg">04</span><span class="go">→</span></div>
-      <div class="toc-item" data-target="5"><span class="no">03</span><div class="txt"><div class="t">第三节标题</div><div class="d">Section sub · English</div></div><span class="pg">05</span><span class="go">→</span></div>
+      <!-- 目录项：data-target 写对应内容页的 HTML 文件名，html2pdf.mjs 据此生成可点击的 PDF 内部跳转 -->
+      <div class="toc-item" data-target="card-02.html"><span class="no">01</span><div class="txt"><div class="t">第一节标题</div><div class="d">Section sub · English</div></div><span class="pg">03</span><span class="go">→</span></div>
+      <div class="toc-item" data-target="card-03.html"><span class="no">02</span><div class="txt"><div class="t">第二节标题</div><div class="d">Section sub · English</div></div><span class="pg">04</span><span class="go">→</span></div>
+      <div class="toc-item" data-target="card-04.html"><span class="no">03</span><div class="txt"><div class="t">第三节标题</div><div class="d">Section sub · English</div></div><span class="pg">05</span><span class="go">→</span></div>
     </div>
   </div>
   <div class="foot"><span>Contents</span><span>Click to jump</span></div>
