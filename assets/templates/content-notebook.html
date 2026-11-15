@@ -19,6 +19,12 @@
   .sec .an{font-size:12px;color:#9A8E82;margin-left:auto;}
   .lead{font-size:15px;line-height:1.8;color:#3A3530;}
   .lead b{color:#B8281C;font-weight:600;}
+  /* 冒号子项段：「X：…」并列子项 ≥2 个时用 .kv 替代 .lead，每个子项独立成段，段间 12px，原文一字不删 */
+  .kv{font-size:15px;line-height:1.8;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:#B8281C;font-weight:700;}
+  .kv b{color:#B8281C;font-weight:600;}
   .hl{position:relative;display:inline;z-index:0;isolation:isolate;}
   .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 2px);height:.65em;background:#E9B445;opacity:.45;border-radius:.04em;transform:rotate(-.3deg);}
   .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}

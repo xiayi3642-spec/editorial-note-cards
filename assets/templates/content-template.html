@@ -32,6 +32,12 @@
   .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
   .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
   .lead .src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:.08em;}
+  /* 冒号子项段：一段长文里含多个「X：…」并列子项时用 .kv，替代 .lead */
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--green);font-weight:700;}
+  .kv b{color:var(--green);font-weight:600;}
   .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .f{border:1px solid rgba(74,124,58,.3);border-radius:8px;padding:14px 14px;}
   .f .t{font-size:17px;font-weight:500;color:var(--ink);}

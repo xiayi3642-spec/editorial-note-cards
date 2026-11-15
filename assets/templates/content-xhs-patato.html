@@ -39,6 +39,12 @@
   .sec .lbl .an{font-size:13px;color:var(--gray);margin-left:auto;}
   .lead{font-size:16px;line-height:1.85;color:var(--ink);}
   .lead b{color:var(--accent2);font-weight:600;}
+  /* 冒号子项段：「X：…」并列子项 ≥2 个时用 .kv 替代 .lead，每个子项独立成段，段间 12px，原文一字不删 */
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent2);font-weight:700;}
+  .kv b{color:var(--accent2);font-weight:600;}
   .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
   .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.55;border-radius:.04em;transform:rotate(-.35deg);}
   /* 数据块：三个数字横排 */

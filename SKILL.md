@@ -40,7 +40,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
    - **跳转绑定**：每条 `.toc-item` 的 `data-target` 写该内容页的 HTML 文件名（如 `card-02.html`），`html2pdf.mjs` 据此加 GoTo 内部链接，PDF 里点目录项可跳转
    - 外层 `.t2` 左 `CHAPTER XX / CONTENTS`、右 `02 / T`；`.foot` 同内容页；页码与内容页 `.t2` 逐条一致，不能是装饰数字
    - 目录页只承担导航：不塞正文、引文、荧光笔、背景色块；条目 2–8 条（超 8 条按章节聚合）
-4. **写内容页** `card-02-…` 起（页码从 `03 / T` 起，顺延到 `T-1 / T`）：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
+4. **写内容页** `card-02-…` 起（页码从 `03 / T` 起，顺延到 `T-1 / T`）：复制 `assets/templates/content-template.html`，用 html 排版思路把内容组织成 `.sec/.lead/.kv/.feat/.cls/.quote` 板块，填外层 `.t1/.t2/.foot` 与页码。**遇到一段长文里含多个「X：…」并列子项（作用/主要内容/过程/特征/分类…）时，不要塞进 `.lead` 一整段，改用 `.kv`**：每个子项独立一个 `<p>`、标签包 `<b class="k">作用</b>` 走 accent 加粗、段间 12px，原文一字不删（样式已内置到全部 `content-*.html`，用法见 `references/spec.md`「.kv 冒号子项段」）。**卡片位置、三处间距、字体栈固定不改；色板按步骤 0 的反推结果替换**（规范见 `references/spec.md`）。正文中真正需要读者停住的关键词/短句可包裹 `<span class="hl">…</span>`，在文字后层加黄色荧光笔；装饰/导航文案不加，且每页克制使用（见 `references/spec.md`「重点荧光笔」）。
 5. **写末页细方格空白页 `card-{T}-blank-grid.html`（强制，必须最后一页）**：复制 `assets/templates/blank-grid-template.html`：
    - 只换外层元信息（`.t1/.t2/.bot` 与 `.foot` 的章节号、`T / T`），**保持页面空白**：不加标题正文、不加提示语、不加荧光笔
    - 细方格固定 `--grid:20px`（≈4mm）双向 1px 细线，铺满奶油卡主体、底部留 64px 给页脚条；`--grid-line` 由本风格 accent 派生（默认 `rgba(74,124,58,.22)`），**不得换成横线纸/点阵纸**
@@ -65,6 +65,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 - **页序强制（不可省）**：`封面 → 目录页(card-toc) → 内容页 → 细方格空白页(最后一页)`。目录页必须紧邻封面、方格页必须在最末；缺任一页视为整套不合格，不得交付——用户没要求也要加，也不因「只出 PNG」「页数不够」而省略。
 - **目录页规则**：只放导航信息（序号/中文标题/英文副题/真实页码/`data-target` 跳转绑定），页码与内容页 `.t2` 逐条一致；禁止正文、引文、荧光笔、背景色块。
 - **方格空白页规则**：除 `.t1/.t2/.bot/.foot` 与一枚 `NOTES · FREE SPACE` kicker 外**保持全空**；固定 20px（≈4mm）细方格、双向 1px 线，不得改成横线纸/点阵纸，也不加任何提示文案。
+- **冒号子项必须分段**：一段正文里有 2 个以上「X：…」并列子项时，用 `.kv`（每项一个 `<p>`），不得压进 `.lead` 一整段——塞成一段会失去分段落行、读不出层级。
 - **一套一色**：整套笔记卡全程只用**一个**配色风格，不中途切换（风格由参考图反推 / 点名 / 随机决定后，全套不变）。
 - **重点荧光笔**：仅用于非装饰性正文里的重点关键词/短句；默认荧光黄 `#FFF200`，色块位于文字后层、向下偏移，高度约为字高 `30%`。页眉、页码、kicker、英文副题、脚注、纯装饰字不加；禁止整段高亮或把它当普通配色使用。
 - **渲染后必须审计**：交付前用 `node scripts/html2png.mjs <cards...> --check` 审计；带溢出/裁剪/单行槽换行的卡必须修复后再交付，**禁用 `overflow:hidden` 掩盖故障**（会隐藏文字而非修复）。
@@ -77,7 +78,7 @@ description: 把课程/书本/PPT 的笔记内容排版成一整套「Editorial 
 - **新增风格**：把用户确认/沉淀的风格写成 `assets/styles/<风格名>.md`，沿用同格式（名称、默认否、氛围、色板、字体、结构引用），即成为可切换选项
 
 ## 维护
-- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`cover-xhs-patato.html`、`cover-xueshan-purple.html`、**`toc-template.html`（目录页）**、`content-template.html`、**`blank-grid-template.html`（末页细方格空白页）**、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`、`content-xhs-patato.html`、`content-xueshan-purple.html`、`cover-notebook.html`、`content-notebook.html`（定稿示例）
+- 模板：`assets/templates/cover-template.html`、`cover-spring.html`、`cover-painting.html`、`cover-izakaya.html`、`cover-spiral-gold.html`、`cover-blend-warmcool.html`、`cover-xhs-patato.html`、`cover-xueshan-purple.html`、**`toc-template.html`（目录页）**、`content-template.html`、**`blank-grid-template.html`（末页细方格空白页）**、`content-izakaya.html`、`content-spiral-gold.html`、`content-blend-warmcool.html`、`content-xhs-patato.html`、`content-xueshan-purple.html`、`cover-notebook.html`、`content-notebook.html`（定稿示例；全部内容模板均已内置 `.kv` 冒号子项段样式）
 - 封面素材：`assets/media/bg-spring.jpg`、`bg-painting.jpg`、`bg-izakaya.jpg`、`bg-spiral-gold.jpg`、`bg-blend-warmcool.jpg`、`bg-patato.jpg`、`bg-xueshan-purple.jpg`（黑紫泼墨+雪山封面）、`bg-xueshan-purple-inner.jpg`（同系深紫内容页垫图）、`bg-notebook-cover.jpg`（红布面笔记本封面）、`bg-notebook-inner.jpg`（白纸别签内容页）；字体 `assets/fonts/`（Didot + 回文明朝体 + 京華老宋体 jinghua-songti.ttf）
 - 风格库：`assets/styles/*.md`
 - 规范：`references/spec.md`
