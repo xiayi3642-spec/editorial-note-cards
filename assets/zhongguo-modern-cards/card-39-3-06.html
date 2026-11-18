@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"><style>
+  :root{
+    --accent:#7c241f; --ink:#33345B; --gray:#7A6F66;
+    --cream:#FFF2DF; --edge:#7c241f; --highlight:#F6AE45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:#7c241f;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(43,44,74,.22);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(124,36,31,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent);font-weight:700;}
+  .kv b{color:var(--accent);font-weight:600;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(124,36,31,.08);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(124,36,31,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  /* 目录 */
+  .row{display:flex;align-items:flex-end;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(124,36,31,.32);}
+  .row .idx{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);width:44px;flex:0 0 44px;line-height:1.2;}
+  .row .txt{flex:0 1 auto;max-width:600px;}
+  .row .t{font-size:20px;font-weight:500;color:var(--ink);line-height:1.3;}
+  .row .en{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:5px;}
+  .row .dots{flex:1 1 auto;border-bottom:1px dotted rgba(124,36,31,.45);margin-bottom:6px;}
+  .row .pg{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);flex:0 0 auto;line-height:1.2;}
+  /* 空白页 */
+  .grid{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(124,36,31,.18) 0 1px,transparent 1px),linear-gradient(to bottom,rgba(124,36,31,.18) 0 1px,transparent 1px);
+    background-size:20px 20px;}
+  .hint{position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-top:auto;text-align:right;}
+</style></head><body>
+  <div class="bg"></div>
+  <div class="frame">
+    <div class="t1"><span>SCUT · MEM</span><span>—— 中国式现代化 · 课程笔记</span></div>
+    <div class="rule"></div>
+    <div class="t2"><span>PART 03 / HIGH-QUALITY DEVELOPMENT</span><span>39 / 72</span></div>
+    <div class="bot"><span>Chinese Path to Modernization</span><span>SCUT MEM</span></div>
+  </div>
+  <div class="card">
+    <div class="kicker">PART 03 / NEW DEVELOPMENT PHILOSOPHY</div>
+    <h1>新发展理念：创新与协调</h1>
+    <div class="sub">Innovation · Coordination</div>
+    <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">理念升级：把新约束与新目标写进决策函数</span><span class="an">Upgrading the Decision Function</span></div>
+      <p class="lead">高速增长阶段典型逻辑：要素投入扩大规模、投资拉动形成增量、低成本参与全球分工、先解决「有没有」。高质量发展阶段新要求：<b>创新驱动提升效率、结构协同提升整体效能、绿色转型降低外部成本、共享发展强化人民性</b>。理念升级的本质，是把新的约束条件和新的发展目标写进决策函数。</p>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">创新：引领发展的第一动力</span><span class="an">Innovation</span></div>
+      <p class="lead">抓住了创新，就抓住了牵动经济社会发展全局的「牛鼻子」。<span class="hl">关键核心技术是要不来、买不来、讨不来的。</span>案例：天工 Ultra 机器人原地跳高 2.88 米、闪电机器人 1500 米长跑 2 分 30 秒，展现中国机器人技术世界领先水平。德国依靠国家驱动在第二次工业革命后超越英美；互联网时代中国在移动支付、刷脸支付等领域领先，源于打破资本垄断。进入工业 4.0 人工智能时代，美国 AI 投入远高于中国；为避免被技术压制，中国政府亲自下场主导投资：目前中国 AI 算力投资约为美国七分之一，却已实现美国约 70% 的算力水平，体现举国体制效率。美方提出「G2」共治，中方拒绝做附庸、主张多元全球架构；会后中央明确将人工智能列为新兴产业首位，加大发展力度。</p>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅲ</span><span class="t">协调：持续健康发展的内在要求</span><span class="an">Coordination</span></div>
+      <p class="lead">「坐公交车就能走出大山」引发两代人观念碰撞。协调既是发展手段又是发展目标，同时还是评价发展的标准和尺度；要注重发展整体效能，否则「木桶效应」会愈加显现。协调三层次：<b>补短板</b>（解决明显失衡）、<b>强连接</b>（降低系统摩擦）、<b>提效能</b>（形成协同增益），覆盖区域、产业、供需、公共服务四个维度。系统中最弱的环节、最慢的区域、最堵的链条，可能决定整体效能。公路交通网「村村通」大幅便利出行；2026 年国家新增约 1.7 万亿元投入，将乡村道路宽度翻倍以配合文旅推进。</p>
+    </div></div>
+    <div class="foot"><span>PART 03</span><span>High-quality Development</span></div>
+  </div></body></html>

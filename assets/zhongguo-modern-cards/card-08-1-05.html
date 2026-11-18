@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"><style>
+  :root{
+    --accent:#7c241f; --ink:#33345B; --gray:#7A6F66;
+    --cream:#FFF2DF; --edge:#7c241f; --highlight:#F6AE45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:#7c241f;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(43,44,74,.22);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(124,36,31,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent);font-weight:700;}
+  .kv b{color:var(--accent);font-weight:600;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(124,36,31,.08);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(124,36,31,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  /* 目录 */
+  .row{display:flex;align-items:flex-end;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(124,36,31,.32);}
+  .row .idx{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);width:44px;flex:0 0 44px;line-height:1.2;}
+  .row .txt{flex:0 1 auto;max-width:600px;}
+  .row .t{font-size:20px;font-weight:500;color:var(--ink);line-height:1.3;}
+  .row .en{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:5px;}
+  .row .dots{flex:1 1 auto;border-bottom:1px dotted rgba(124,36,31,.45);margin-bottom:6px;}
+  .row .pg{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);flex:0 0 auto;line-height:1.2;}
+  /* 空白页 */
+  .grid{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(124,36,31,.18) 0 1px,transparent 1px),linear-gradient(to bottom,rgba(124,36,31,.18) 0 1px,transparent 1px);
+    background-size:20px 20px;}
+  .hint{position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-top:auto;text-align:right;}
+</style></head><body>
+  <div class="bg"></div>
+  <div class="frame">
+    <div class="t1"><span>SCUT · MEM</span><span>—— 中国式现代化 · 课程笔记</span></div>
+    <div class="rule"></div>
+    <div class="t2"><span>PART 01 / WORLD COMPARISON</span><span>08 / 72</span></div>
+    <div class="bot"><span>Chinese Path to Modernization</span><span>SCUT MEM</span></div>
+  </div>
+  <div class="card">
+    <div class="kicker">PART 01 / DEVELOPING WORLD · INDIA</div>
+    <h1>发展中国家现代化：印度（上）</h1>
+    <div class="sub">India — Service-led "Leapfrog"</div>
+    <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">尼赫鲁模式（1947–1991）</span><span class="an">Nehru Model</span></div>
+      <p class="lead">基于「尼赫鲁式社会主义」构想，建立<b>公营部门主导的混合经济体制</b>，实施严苛的「工业许可证制度」。该模式奠定了印度独立的工业基础，却因过度管制与保护主义导致市场效率低下、增长滞缓，形成著名的「印度式增长率」。</p>
+<p class="lead"><b>贾瓦哈拉尔·尼赫鲁</b>（1947–1964）：印度开国总理、尼赫鲁模式总设计师，主张国家主导工业化，强调公营部门在经济中的支配地位，深刻塑造了印度独立后前四十年的经济轨迹。</p>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">1991 年 LPG 自由化改革</span><span class="an">Liberalization · Privatization · Globalization</span></div>
+      <p class="lead">面对严重的国际收支危机，拉奥政府开启里程碑式改革，核心为<b>自由化（Liberalization）、私有化（Privatization）、全球化（Globalization）</b>：废除繁琐许可证制度，全面开放外资与贸易，打破经济僵局，为服务业爆发式崛起扫清制度障碍。</p>
+<p class="lead"><b>曼莫汉·辛格</b>（2004–2014）：时任财政部长，被誉为「印度经济改革之父」。在国家经济濒临崩溃之际力推自由化改革，打破官僚壁垒、引入市场竞争，直接促成此后印度服务业的繁荣与经济腾飞。</p>
+    </div></div>
+    <div class="foot"><span>PART 01</span><span>World Comparison</span></div>
+  </div></body></html>

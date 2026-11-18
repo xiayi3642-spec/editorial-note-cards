@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"><style>
+  :root{
+    --accent:#7c241f; --ink:#33345B; --gray:#7A6F66;
+    --cream:#FFF2DF; --edge:#7c241f; --highlight:#F6AE45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:#7c241f;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(43,44,74,.22);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(124,36,31,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent);font-weight:700;}
+  .kv b{color:var(--accent);font-weight:600;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(124,36,31,.08);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(124,36,31,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  /* 目录 */
+  .row{display:flex;align-items:flex-end;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(124,36,31,.32);}
+  .row .idx{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);width:44px;flex:0 0 44px;line-height:1.2;}
+  .row .txt{flex:0 1 auto;max-width:600px;}
+  .row .t{font-size:20px;font-weight:500;color:var(--ink);line-height:1.3;}
+  .row .en{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:5px;}
+  .row .dots{flex:1 1 auto;border-bottom:1px dotted rgba(124,36,31,.45);margin-bottom:6px;}
+  .row .pg{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);flex:0 0 auto;line-height:1.2;}
+  /* 空白页 */
+  .grid{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(124,36,31,.18) 0 1px,transparent 1px),linear-gradient(to bottom,rgba(124,36,31,.18) 0 1px,transparent 1px);
+    background-size:20px 20px;}
+  .hint{position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-top:auto;text-align:right;}
+</style></head><body>
+  <div class="bg"></div>
+  <div class="frame">
+    <div class="t1"><span>SCUT · MEM</span><span>—— 中国式现代化 · 课程笔记</span></div>
+    <div class="rule"></div>
+    <div class="t2"><span>PART 04 / REFORM & COMMON PROSPERITY</span><span>59 / 72</span></div>
+    <div class="bot"><span>Chinese Path to Modernization</span><span>SCUT MEM</span></div>
+  </div>
+  <div class="card">
+    <div class="kicker">PART 04 / MECHANISM ONE & TWO</div>
+    <h1>机制一：破除障碍 · 机制二：激发活力</h1>
+    <div class="sub">Remove Barriers · Energize Actors</div>
+    <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">机制一：破除体制机制障碍，让要素流动起来</span><span class="an">Three Layers of Barriers</span></div>
+      <div class="kv"><p><b class="k">体制性障碍（根本制度层面）</b>：所有制：从单一公有制 → 公有制为主体、多种所有制经济共同发展；分配方式：从单一按劳分配 → 按劳分配为主体、多种分配方式并存；人与人关系：法律面前人人平等不变，但经济维度的贫富差距被认可——允许一部分人、一部分地区先富起来。</p><p><b class="k">机制性障碍（资源配置方式）</b>：从计划经济配置资源 → 1992 年确立市场在资源配置中的基础性作用。</p><p><b class="k">具体政策障碍（行政审批等）</b>：行政审批时长、准入监管方式等不断放开，减少对主体的约束。</p></div>
+<p class="lead"><b>新时代破除障碍的重点：</b>科技成果转化——中国专利转化率从过去不到 15% 逐步提高，国家正在大力建设中试环节；数据要素流通——数据作为新生产要素，确权、定价、交易规则正在建立；要素市场化配置——构建全国统一大市场，打破地方保护和行政壁垒。</p>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">机制二：激发社会活力，让主体行动起来</span><span class="an">Four Sources of Vitality</span></div>
+      <p class="lead">破除障碍解决「能不能干」，激发活力解决「愿不愿干、敢不敢干」。社会活力四个来源：<b>稳定预期</b>（规则不会轻易变，三五年内可以在框架内安心做事）、<b>明确权利</b>（哪些事可以自主决定，红线在哪里）、<b>公平机会</b>（能够进入市场、参与竞争）、<b>合理回报</b>（付出与回报对等）。</p>
+<p class="lead">为什么现在创业的人越来越少？很多人手上有钱、有想法想创业，但不敢轻易尝试——缺乏制度空间、稳定预期和合理激励。社会心理从「超前消费」「超额消费」回归到「量入为出」「消费降级」：认知回归、消费回归。问题：大家都不消费了，内需拉动就成了空的——社会发展的动力来自消费和竞争。<b>正常的卷叫竞争，恶性内卷会把社会卷死</b>：竞争是社会发展的动力，过度内卷会导致需求动力降低，变成躺平社会。</p>
+    </div></div>
+    <div class="foot"><span>PART 04</span><span>Reform & Common Prosperity</span></div>
+  </div></body></html>

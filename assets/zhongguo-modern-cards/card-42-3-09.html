@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"><style>
+  :root{
+    --accent:#7c241f; --ink:#33345B; --gray:#7A6F66;
+    --cream:#FFF2DF; --edge:#7c241f; --highlight:#F6AE45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:#7c241f;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(43,44,74,.22);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(124,36,31,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent);font-weight:700;}
+  .kv b{color:var(--accent);font-weight:600;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(124,36,31,.08);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(124,36,31,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  /* 目录 */
+  .row{display:flex;align-items:flex-end;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(124,36,31,.32);}
+  .row .idx{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);width:44px;flex:0 0 44px;line-height:1.2;}
+  .row .txt{flex:0 1 auto;max-width:600px;}
+  .row .t{font-size:20px;font-weight:500;color:var(--ink);line-height:1.3;}
+  .row .en{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:5px;}
+  .row .dots{flex:1 1 auto;border-bottom:1px dotted rgba(124,36,31,.45);margin-bottom:6px;}
+  .row .pg{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);flex:0 0 auto;line-height:1.2;}
+  /* 空白页 */
+  .grid{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(124,36,31,.18) 0 1px,transparent 1px),linear-gradient(to bottom,rgba(124,36,31,.18) 0 1px,transparent 1px);
+    background-size:20px 20px;}
+  .hint{position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-top:auto;text-align:right;}
+</style></head><body>
+  <div class="bg"></div>
+  <div class="frame">
+    <div class="t1"><span>SCUT · MEM</span><span>—— 中国式现代化 · 课程笔记</span></div>
+    <div class="rule"></div>
+    <div class="t2"><span>PART 03 / HIGH-QUALITY DEVELOPMENT</span><span>42 / 72</span></div>
+    <div class="bot"><span>Chinese Path to Modernization</span><span>SCUT MEM</span></div>
+  </div>
+  <div class="card">
+    <div class="kicker">PART 03 / NEW DEVELOPMENT PATTERN</div>
+    <h1>新发展格局：内涵与战略主动</h1>
+    <div class="sub">Dual Circulation · Seize Strategic Initiative</div>
+    <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">新发展格局的内涵</span><span class="an">Domestic & International Circulation</span></div>
+      <div class="kv"><p><b class="k">国内大循环是根基</b>：内需主导、供给侧改革、创新引领，发挥超大规模市场优势，形成国民经济良性循环。</p><p><b class="k">国际大循环是延伸</b>：对外开放、全球合作、互利共赢，更好利用两个市场、两种资源，提升国际竞争力。</p><p><b class="k">辩证统一</b>：新发展格局以国内大循环为主体、国内国际双循环相互促进，育新机、开新局；二者辩证统一、相互赋能，共同构成推动高质量发展的战略基点。</p></div>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">为什么要加快构建新发展格局</span><span class="an">Strategic Initiative</span></div>
+      <p class="lead">一是<b>把握战略主动</b>：外部面临大国博弈、单边保护主义抬头等风险，需筑牢国内循环压舱石，提升经济抗风险韧性；二是<b>推动内部转型</b>：从「有没有」转向「好不好」，释放超大规模市场潜力，牢牢把握发展主动权。核心逻辑是防范外部风险、推动内部转型。</p>
+<p class="lead">内部看，传统三驾马车拉动日益吃力，不升级换代未来经济拉动成问题；外部看，中美贸易摩擦使出口面临结构性风险。中国制造 2025 将重心压在新兴产业和未来产业上，引发美国全方位打压。当前新兴产业全球前 20 位中 14 个由中国引领，欧美日仅剩 3 个（半导体、生物医药等）；中国产业门类最全，约 90 个二级门类可引领全球，战略纵深无与伦比。中等收入群体 2035 年前后将达 6—7 亿。关键核心技术和卡脖子环节必须掌握在自己手中：华为 Mate40 Pro 因台积电断供三年停产、欧洲市场归零，被迫启用鸿蒙系统。14 亿人完全可以形成消费—生产—分配—流通的内部闭环，让外部威胁无法使中国屈服。</p>
+    </div></div>
+    <div class="foot"><span>PART 03</span><span>High-quality Development</span></div>
+  </div></body></html>

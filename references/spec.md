@@ -109,6 +109,18 @@
 - `.sec` 板块：`.lbl{border-bottom:1px solid rgba(74,124,58,.35);padding-bottom:10px;margin-bottom:16px;display:flex;align-items:baseline;gap:14px}`，含 `.no`（Playfair 22px 绿序号）、`.t`（22px/500 标题）、`.an`（14px 灰右对齐注解）
 - **硬规则：板块标签 `.sec .lbl` 一律用下划线分隔，禁止背景色块（`background:#FFF3C4`/`#EAF4FB` 等）、禁止圆角 padding 块、禁止 3px 左条**——下划线是唯一装饰。此规则曾在多个模板里被偏离成淡黄色块，已全局回修，新增模板不得再犯。
 - `.lead` 正文：16px line-height 1.85 ink，`b` 绿强调
+- `.kv` 冒号子项段：当一段长文里含多个「X：……」并列子项（如「作用：… 主要内容：… 过程：…」）时，**不要塞进 `.lead` 一整段**，改用 `.kv`：
+  ```html
+  <div class="kv">
+    <p><b class="k">作用</b>：明确任务范围、责任、进度和资源；……</p>
+    <p><b class="k">主要内容</b>：范围、进度、费用、质量……</p>
+    <p><b class="k">过程</b>：先明确目标和任务，……</p>
+  </div>
+  ```
+  - 每个「X：…」子项独立一个 `<p>`，段间 `margin-top:12px`；字号/行高与 `.lead` 一致（16px / 1.85 / ink），**原文一字不删**
+  - 冒号前的标签（作用/主要内容/过程/特征/分类/…）包 `<b class="k">`，颜色走 `var(--green)`（accent 变量，随整套风格换色），加粗 700
+  - 冒号本身保持原 ink 色，不包进 `.k`；标签后的正文段内仍可用 `<b>`（绿）和 `.hl`（荧光笔）做局部强调
+  - 适用边界：子项 ≥2 个、且每个子项 ≥2 行时用 `.kv`；只有 1 个冒号子项或子项都很短时仍用 `.lead`
 - `.feat/.f` 特征网格：`grid repeat(4,1fr) gap:14`，`.f` 圆角8 细边框，`.t` 17px/500，`.d` 12.5px 灰
 - `.cls/.cl` 分类网格：`grid 1fr 1fr gap:14`，`.cl` padding 16 18，`.abbr` mono 绿，`.t` 18px/500，`.d` 13px 灰
 - **`.kv` 冒号子项段**：一段长文里含多个「X：……」并列子项（作用/主要内容/过程/特征/分类…）时，**不要塞进 `.lead` 一整段**，改用 `.kv`：

@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@500&family=Noto+Serif+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap"><style>
+  :root{
+    --accent:#7c241f; --ink:#33345B; --gray:#7A6F66;
+    --cream:#FFF2DF; --edge:#7c241f; --highlight:#F6AE45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1080px;height:1440px;font-family:'Noto Serif SC','Songti SC','SimSun',serif;}
+  .bg{position:absolute;inset:0;background:#7c241f;}
+  .frame{position:absolute;inset:24px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;}
+  .t1{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:15px;font-weight:600;letter-spacing:.05em;}
+  .rule{position:absolute;top:54px;left:32px;right:32px;border-top:1px solid rgba(255,255,255,.4);}
+  .t2{position:absolute;top:86px;left:32px;right:32px;display:flex;justify-content:space-between;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;}
+  .bot{position:absolute;bottom:18px;left:32px;right:32px;display:flex;justify-content:space-between;color:rgba(255,255,255,.9);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .card{position:absolute;top:190px;left:105px;right:105px;bottom:136px;background:var(--cream);border:1.5px solid var(--edge);border-radius:12px;box-shadow:0 16px 44px rgba(43,44,74,.22);padding:42px 52px;display:flex;flex-direction:column;overflow:hidden;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  h1{font-size:38px;font-weight:500;color:var(--ink);margin-top:34px;line-height:1.1;}
+  .sub{font-size:17px;font-style:normal;color:var(--accent);margin-top:8px;}
+  .body{flex:1;display:flex;flex-direction:column;margin-top:16px;padding-bottom:86px;gap:26px;}
+  .sec .lbl{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(124,36,31,.35);padding-bottom:10px;margin-bottom:16px;}
+  .sec .lbl .no{font-family:'Playfair Display','Georgia',serif;font-style:normal;font-size:22px;color:var(--accent);}
+  .sec .lbl .t{font-size:22px;font-weight:500;color:var(--ink);}
+  .sec .lbl .an{font-size:14px;color:var(--gray);margin-left:auto;}
+  .lead{font-size:16px;line-height:1.85;color:var(--ink);}
+  .lead b{color:var(--accent);font-weight:600;}
+  .hl{position:relative;display:inline;z-index:0;isolation:isolate;font-weight:inherit;}
+  .hl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;top:calc(30% + 3px);height:.70em;background:var(--highlight);opacity:.4;border-radius:.04em;transform:rotate(-.35deg);}
+  .kv{font-size:16px;line-height:1.85;color:var(--ink);}
+  .kv p{margin:0;}
+  .kv p + p{margin-top:12px;}
+  .kv .k{color:var(--accent);font-weight:700;}
+  .kv b{color:var(--accent);font-weight:600;}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .f{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:14px;}
+  .f .t{font-size:17px;font-weight:500;color:var(--ink);}
+  .f .d{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .cls{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .cl{border:1px solid rgba(124,36,31,.3);border-radius:8px;padding:16px 18px;}
+  .cl .abbr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+  .cl .t{font-size:18px;font-weight:500;margin-top:6px;color:var(--ink);}
+  .cl .d{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.5;}
+  .quote{border-left:3px solid var(--accent);background:rgba(124,36,31,.08);padding:18px 24px;}
+  .quote p{font-size:16px;font-style:normal;line-height:1.75;color:var(--ink);}
+  .quote p b{color:var(--accent);font-weight:600;}
+  .foot{position:absolute;left:52px;right:52px;bottom:16px;border-top:1px solid rgba(124,36,31,.3);padding-top:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+  /* 目录 */
+  .row{display:flex;align-items:flex-end;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(124,36,31,.32);}
+  .row .idx{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);width:44px;flex:0 0 44px;line-height:1.2;}
+  .row .txt{flex:0 1 auto;max-width:600px;}
+  .row .t{font-size:20px;font-weight:500;color:var(--ink);line-height:1.3;}
+  .row .en{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:5px;}
+  .row .dots{flex:1 1 auto;border-bottom:1px dotted rgba(124,36,31,.45);margin-bottom:6px;}
+  .row .pg{font-family:'Playfair Display',serif;font-style:normal;font-size:20px;color:var(--accent);flex:0 0 auto;line-height:1.2;}
+  /* 空白页 */
+  .grid{position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;
+    background-image:linear-gradient(to right,rgba(124,36,31,.18) 0 1px,transparent 1px),linear-gradient(to bottom,rgba(124,36,31,.18) 0 1px,transparent 1px);
+    background-size:20px 20px;}
+  .hint{position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin-top:auto;text-align:right;}
+</style></head><body>
+  <div class="bg"></div>
+  <div class="frame">
+    <div class="t1"><span>SCUT · MEM</span><span>—— 中国式现代化 · 课程笔记</span></div>
+    <div class="rule"></div>
+    <div class="t2"><span>PART 02 / HISTORICAL QUEST OF CHINA</span><span>23 / 72</span></div>
+    <div class="bot"><span>Chinese Path to Modernization</span><span>SCUT MEM</span></div>
+  </div>
+  <div class="card">
+    <div class="kicker">PART 02 / SELF-STRENGTHENING MOVEMENT</div>
+    <h1>洋务运动：「中体西用」的器物变革</h1>
+    <div class="sub">1861–1895 · Self-Strengthening Movement</div>
+    <div class="body">
+    <div class="sec">
+      <div class="lbl"><span class="no">Ⅰ</span><span class="t">背景与核心</span><span class="an">Chinese Learning as Substance</span></div>
+      <p class="lead">在两次鸦片战争与太平天国运动的内忧外患下，洋务派主张<b>「中学为体，西学为用」</b>，试图通过引进西方军事装备、机器生产和科学技术来维护清朝统治，成为中国近代化的开端。</p>
+    </div>
+
+    <div class="sec" style="margin-top:34px;">
+      <div class="lbl"><span class="no">Ⅱ</span><span class="t">三大实践方向</span><span class="an">Three Lines of Practice</span></div>
+      <div class="kv"><p><b class="k">军事自强</b>：开启国防近代化：创办安庆内军械所、江南制造总局等军事工业，引进机器生产、仿制枪炮舰船，是中国近代机器工业的起步，一定程度上增强了国防力量。</p><p><b class="k">育才兴学</b>：培养新式人才：设立京师同文馆，翻译西方书籍，派遣留学生赴美赴欧深造，打破传统教育封闭格局，培养首批翻译、外交及科技人才。</p><p><b class="k">求富兴邦</b>：填补产业空白：兴办轮船招商局、汉阳铁厂等民用企业，以「求富」为口号，在航运、采矿、纺织等领域抵制外国资本入侵，同时刺激中国民族资本主义产生。</p></div>
+    </div></div>
+    <div class="foot"><span>PART 02</span><span>Historical Quest of China</span></div>
+  </div></body></html>
